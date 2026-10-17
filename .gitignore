@@ -10,3 +10,6 @@ dist/
 build/
 *.egg-info/
 .Python
+
+# Data Files
+/data/*
