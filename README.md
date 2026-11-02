@@ -1,30 +1,21 @@
-# Model Performance Assignment (SOFT 215)
+# AI Application Exploration (SOFT 215)
 
-**Assignment:** Use PyTorch and Jupyter Notebook to measure, compare, and explain the performance of neural network models.
+This repository contains five Jupyter notebooks exploring neural networks, computer vision, and model evaluation.
 
-**Notebook:** [model_performance_assignment.ipynb](./model_performance_assignment.ipynb)
+## Notebooks
 
-## Overview
-
-The notebook trains two simple PyTorch neural networks on the scikit-learn breast cancer dataset (569 examples, 30 input features, classes `malignant` and `benign`) and compares them on a held-out validation set.
-
-| Step | What the notebook does |
+| Notebook | Description |
 |---|---|
-| Explore data | Prints the number of examples, number of features, target classes, and examples per class |
-| Prepare data | Splits features and targets, creates an 80/20 stratified train/validation split, standardizes features (scaler fit on training data only), converts to tensors, and builds `DataLoader` objects |
-| Models | **Model 1**: 30 → 16 → 2 (one hidden layer). **Model 2**: 30 → 32 → 16 → 2 (two hidden layers). Both use ReLU |
-| Training | 50 epochs, `CrossEntropyLoss`, Adam (learning rate 0.001), training loss printed. Validation data is never used to update weights |
-| Evaluation | `model.eval()` and `torch.no_grad()`; predicted and actual classes are saved |
-| Results | Accuracy, precision, recall, confusion matrix, false positives, and false negatives for each model (positive class: benign) |
-| Comparison | Markdown cell answering the assignment's comparison questions |
-| Error analysis | Lists five misclassified validation examples with actual and predicted classes, then a Markdown cell describing a pattern, a possible cause, and a suggested improvement |
+| [perceptron_lab.ipynb](./perceptron_lab.ipynb) | Implements a basic perceptron and step activation function, then explains how inputs and weights affect its output. |
+| [fashion_mnist_neural_network.ipynb](./fashion_mnist_neural_network.ipynb) | Trains and evaluates a neural network that classifies FashionMNIST clothing images. |
+| [CIFAR_10_CCN_Assignment.ipynb](./CIFAR_10_CCN_Assignment.ipynb) | Builds and trains a convolutional neural network on CIFAR-10, plots training loss, evaluates test accuracy, and displays predictions. |
+| [model_performance_assignment.ipynb](./model_performance_assignment.ipynb) | Compares two PyTorch classifiers on scikit-learn's breast cancer dataset using validation metrics and error analysis. |
+| [ai_application_exploration.ipynb](./ai_application_exploration.ipynb) | Uses a pretrained ResNet-18 image-classification model to explore predictions for an image. |
 
 ## Requirements
 
-- Python 3.12 (the notebook was developed with 3.12.10)
-- Packages listed in [requirements.txt](./requirements.txt): `torch`, `torchvision`, `numpy`, `scikit-learn`, `matplotlib`, `Pillow`, `ipython`, `ipykernel`
-
-The model notebook itself only needs `torch`, `numpy`, `scikit-learn`, and `ipykernel`. The remaining packages are used by the other notebooks in this repository. The dataset ships with scikit-learn, so no download is needed. The notebook runs on CPU and uses a GPU automatically if one is available.
+- Python 3.12 (the notebooks were developed with Python 3.12.10).
+- Packages in [requirements.txt](./requirements.txt), including PyTorch, torchvision, NumPy, scikit-learn, Matplotlib, Pillow, IPython, ipykernel, and Jupyter Notebook.
 
 ## Setup (Windows PowerShell)
 
@@ -36,24 +27,26 @@ python -m pip install -r requirements.txt
 
 If PowerShell blocks the activation script, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` first.
 
-## Run the notebook
+## Run a notebook
 
-**In VS Code (current environment):**
+**In VS Code:**
 
-1. Open `model_performance_assignment.ipynb`.
-2. Select the kernel **.venv (3.12.10)** in the top-right kernel picker.
+1. Open the notebook you want to run.
+2. Select the `.venv` Python 3.12 kernel.
 3. Choose **Run All**.
 
-**From the command line** (requires `jupyter` or `notebook`, which are not in `requirements.txt`):
+**From the command line:**
 
 ```powershell
-python -m pip install notebook
-python -m jupyter notebook model_performance_assignment.ipynb
+python -m jupyter notebook
 ```
 
-Then choose **Run > Run All Cells**.
+Open the notebook from the Jupyter file browser and choose **Run > Run All Cells**.
 
-## Notes
+## Data and execution notes
 
-- Random seeds are fixed (`RANDOM_SEED = 42`), but results can still differ slightly across machines or PyTorch versions.
-- The Markdown comparison and error analysis cells contain typed numbers from the original run (both models: accuracy 0.9561, precision 0.9855, recall 0.9444, 1 false positive, 4 false negatives). If your outputs differ, update those cells to match.
+- CIFAR-10 and FashionMNIST are downloaded by torchvision the first time their notebooks run.
+- The ResNet-18 notebook downloads pretrained weights on first use. `Cat03.jpg` is included in the repository; the notebook can also download the image if it is missing.
+- The model-performance notebook uses the breast cancer dataset included with scikit-learn and does not need a separate dataset download.
+- The notebooks select a GPU when one is available through the installed PyTorch build and otherwise use the CPU. Training time varies with hardware.
+- Model training results may vary slightly across machines and PyTorch versions. The model-performance notebook includes recorded comparison and error-analysis results; update those Markdown cells if a new run produces different metrics.

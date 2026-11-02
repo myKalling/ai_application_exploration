@@ -6,3 +6,4 @@ Pillow==12.3.0
 torch==2.14.1
 torchvision==0.29.1
 scikit-learn==1.9.1
+notebook
