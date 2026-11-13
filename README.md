@@ -1,6 +1,6 @@
 # AI Application Exploration (SOFT 215)
 
-This repository contains five Jupyter notebooks exploring neural networks, computer vision, and model evaluation.
+This repository contains six Jupyter notebooks exploring neural networks, computer vision, and model evaluation.
 
 ## Notebooks
 
@@ -8,6 +8,7 @@ This repository contains five Jupyter notebooks exploring neural networks, compu
 |---|---|
 | [perceptron_lab.ipynb](./perceptron_lab.ipynb) | Implements a basic perceptron and step activation function, then explains how inputs and weights affect its output. |
 | [fashion_mnist_neural_network.ipynb](./fashion_mnist_neural_network.ipynb) | Trains and evaluates a neural network that classifies FashionMNIST clothing images. |
+| [mnist_model_optimization.ipynb](./mnist_model_optimization.ipynb) | Compares a fully connected PyTorch model's training and test accuracy across a baseline and five one-parameter MNIST experiments, with a results table and reflection. |
 | [CIFAR_10_CCN_Assignment.ipynb](./CIFAR_10_CCN_Assignment.ipynb) | Builds and trains a convolutional neural network on CIFAR-10, plots training loss, evaluates test accuracy, and displays predictions. |
 | [model_performance_assignment.ipynb](./model_performance_assignment.ipynb) | Compares two PyTorch classifiers on scikit-learn's breast cancer dataset using validation metrics and error analysis. |
 | [ai_application_exploration.ipynb](./ai_application_exploration.ipynb) | Uses a pretrained ResNet-18 image-classification model to explore predictions for an image. |
@@ -45,7 +46,8 @@ Open the notebook from the Jupyter file browser and choose **Run > Run All Cells
 
 ## Data and execution notes
 
-- CIFAR-10 and FashionMNIST are downloaded by torchvision the first time their notebooks run.
+- CIFAR-10, FashionMNIST, and MNIST are downloaded by torchvision the first time their notebooks run.
+- The MNIST optimization notebook has a baseline cell and five separate experiment cells (epochs, learning rate, batch size, dropout, and weight decay), each changing one setting. Run them in order so the results table includes every run. Each run trains on the same seeded 10,000-image subset and evaluates against the full test set. The reflection is static Markdown; update it if you rerun with different results.
 - The ResNet-18 notebook downloads pretrained weights on first use. `Cat03.jpg` is included in the repository; the notebook can also download the image if it is missing.
 - The model-performance notebook uses the breast cancer dataset included with scikit-learn and does not need a separate dataset download.
 - The notebooks select a GPU when one is available through the installed PyTorch build and otherwise use the CPU. Training time varies with hardware.
